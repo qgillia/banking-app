@@ -133,7 +133,7 @@ export const createBankAccount = async ({
   accountId,
   accessToken,
   fundingSourceUrl,
-  sharableId
+  shareableId
 }: createBankAccountProps) => {
   try {
     const { database } = await createAdminClient();
@@ -148,14 +148,14 @@ export const createBankAccount = async ({
         accountId,
         accessToken,
         fundingSourceUrl,
-        sharableId
+        shareableId
       }
     );
 
     return parseStringify(bankAccount);
 
   } catch (error) {
-    
+
   }
 }
 
@@ -178,7 +178,7 @@ export const exchangePublicToken = async ({
     });
 
     const accountData = accountsResponse.data.accounts[0];
-    
+
     // Create a processor token for Dwolla using the access token and account ID.
     const request: ProcessorTokenCreateRequest = {
       access_token: accessToken,
@@ -207,7 +207,7 @@ export const exchangePublicToken = async ({
       accountId: accountData.account_id,
       accessToken,
       fundingSourceUrl,
-      sharableId: encryptId(accountData.account_id)
+      shareableId: encryptId(accountData.account_id)
     });
 
     // Revalidate path to reflect changes
