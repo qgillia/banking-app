@@ -20,7 +20,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
     getLinkToken();
   }, [user]);
 
-  const onSuccess = useCallback<PlaidLinkOnSuccess>(async (public_token: string) => { 
+  const onSuccess = useCallback<PlaidLinkOnSuccess>(async (public_token: string) => {
     await exchangePublicToken({
       publicToken: public_token,
       user
@@ -28,7 +28,7 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
 
     router.push('/');
 
-  }, [user]);
+  }, [router, user]);
 
   const config: PlaidLinkOptions = {
     token,
@@ -40,9 +40,9 @@ const PlaidLink = ({ user, variant }: PlaidLinkProps) => {
   return (
     <>
       {variant === 'primary' ? (
-        <Button 
-          className='plaidlink-primary' 
-          onClick={() => open()} 
+        <Button
+          className='plaidlink-primary'
+          onClick={() => open()}
           disabled={!ready}
         >
           Connect Bank
